@@ -18,7 +18,7 @@ const points = [
   "cant predict now",
   "concentrate and ask again",
   "no lol",
-  "even yeager from attack on titan",
+  "eren yeager from attack on titan",
   "my sources say…no",
   "don't count on it!!!",
   "my reply is no",
@@ -27,22 +27,43 @@ const points = [
   "you already know the answer",
   "work on it"
   ];
-  // document.getElementById("response").innerHTML= shake(points)
-  // function shake(points){
-  //   points.sort(function(a,b){return 0.5 - Math.random()});
-  //   document.getElementById("response").innerHTML=points[0];
-  //   document.getElementById("response").style.fontSize= "18px";
-  // }
 
 
 
+//elements to manipulate 
 const button = document.querySelector("button");
 const response = document.querySelector("#response");
+const questionInput = document.getElementById("clear");
+const questiond =document.getElementById(`questiond`);
+const responsed = document.getElementById(`responsed`);
+const card = document.getElementById(`card`);
 
+
+
+
+//generates random response + changes font size every time you click btn
 button.addEventListener("click", function generateRandom(){
+  if (questionInput.value.length < 1){
+    alert(`enter a question!!`);
+  } else{
+    const question = questionInput.value;
+
+    questiond.textContent = question;
+
   const index= Math.floor(Math.random()*points.length);
   const result =points[index];
   document.getElementById("response").innerHTML= result;
   document.getElementById("response").style.fontSize= "18px";
 
+  responsed.textContent = result;
+
+  card.style.display =`block`;
+  }
 });
+
+//when you press the enter key it functions the enter button
+document.addEventListener(`keydown`, function(event){
+  if (event.key === `Enter`) {
+    button.click();
+  }
+})
